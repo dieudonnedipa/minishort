@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>URL Raccourcie</title>
+  <style>
+    body { font-family: Arial; max-width: 500px; margin: 50px auto; padding: 20px; text-align: center; }
+    .result { background: #f8f9fa; padding: 20px; margin: 20px 0; border-radius: 5px; }
+    .short-url { font-size: 18px; font-weight: bold; color: #007bff; }
+    button { padding: 10px 20px; margin: 10px; background: #007bff; color: white; border: none; }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <h1>✅ URL Raccourcie !</h1>
+  
+  <div class="result">
+    <p>URL originale :</p>
+    <small>{{ originalUrl }}</small>
+    
+    <p>URL raccourcie :</p>
+    <div class="short-url">
+      <a href="{{ shortLink }}" target="_blank" style="color: #007bff; text-decoration: underline;">{{ shortLink }}</a>
+    </div>
+    
+    <button onclick="navigator.clipboard.writeText('{{ shortLink }}')">
+      Copier l'URL
+    </button>
+  </div>
+  
+  <h3>Code QR :</h3>
+  <img src="{{ qrCode }}" alt="QR Code">
+  <p><small>Scannez pour accéder à votre URL</small></p>
+  
+  <a href="/"><button>Raccourcir une autre URL</button></a>
+</body>
+</html>

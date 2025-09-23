@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Raccourcisseur URL</title>
+  <style>
+    body { font-family: Arial; max-width: 500px; margin: 50px auto; padding: 20px; }
+    input { width: 100%; padding: 10px; margin: 10px 0; }
+    button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <h1>🔗 Raccourcisseur d'URL</h1>
+  
+  <form action="/shorten" method="POST">
+    {{ csrfField() }}
+    <input type="url" name="url" placeholder="Entrez votre URL ici..." required>
+    <button type="submit">Raccourcir</button>
+  </form>
+</body>
+</html>
