@@ -7,8 +7,9 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('original_url', 2000).notNullable()
-      table.string('short_code', 10).unique().notNullable()
+      table.string('short_code', 50).unique().notNullable()
       table.integer('clicks').defaultTo(0)
+      table.text('qr_code')
       table.timestamps(true)
     })
   }

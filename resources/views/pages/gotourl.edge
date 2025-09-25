@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MiniShort - Accueil</title>
+  <title>MiniShort - Gestion des URLs</title>
   <style>
     body { display: flex; font-family: Arial; margin: 0; }
     .sidebar { width: 300px; background: #f4f4f4; padding: 20px; border-right: 1px solid #ddd; height: 100vh; overflow-y: auto; }
@@ -9,6 +9,8 @@
     input, button { width: 100%; padding: 10px; margin: 10px 0; }
     .short-url { color: #007bff; font-weight: bold; }
     .card { margin-bottom:15px; padding:10px; background:#fff; border-radius:5px; }
+    a.button { text-decoration: none; display: inline-block; background:#007bff; color:white; padding:10px 20px; border-radius:5px; margin-top:10px; }
+    a.button:hover { background:#0056b3; }
   </style>
 </head>
 <body>
@@ -19,30 +21,36 @@
       <div class="card">
         <p><b>Original:</b> {{ url.originalUrl }}</p>
         <p><a class="short-url" href="/{{ url.shortCode }}" target="_blank">{{ url.shortCode }}</a></p>
-        <img src="{{ url.qrCode }}" alt="QR" style="max-width:100px;">
-        <form action="/urls/{{ url.id }}/delete" method="POST">
+        <img src="{{ url.qrCode }}" alt="QR" style="max-width:100px; margin-bottom:5px;">
+        
+        <!-- Supprimer -->
+        <form action="/urls/{{ url.id }}/delete" method="POST" style="margin-bottom:5px;">
           {{ csrfField() }}
-          <button type="submit" style="background:red; color:white;">Supprimer</button>
+          <button type="submit" style="background:red; color:white; border:none; padding:5px 10px;">Supprimer</button>
         </form>
+
+        <!-- Modifier -->
         <form action="/urls/{{ url.id }}/update" method="POST">
           {{ csrfField() }}
           <input type="text" name="originalUrl" value="{{ url.originalUrl }}" placeholder="Nouvelle URL">
           <input type="text" name="shortCode" value="{{ url.shortCode }}" placeholder="Nouveau shortCode">
-          <button type="submit">Mettre à jour</button>
+          <button type="submit" style="background:#007bff; color:white; border:none; padding:5px 10px;">Mettre à jour</button>
         </form>
       </div>
     @endeach
   </div>
 
-  <!-- Content -->
+  <!-- Content principal -->
   <div class="content">
-    <h1>🔗 Raccourcisseur d'URL</h1>
-    <form action="/shorten" method="POST">
+    <h1>🔍 Rechercher / Redirection</h1>
+    <form action="/goto" method="POST">
       {{ csrfField() }}
-      <input type="url" name="originalUrl" placeholder="Entrez votre URL ici..." required>
-      <input type="text" name="shortCode" placeholder="Entrer un shortCode (optionnel)">
-      <button type="submit">Envoyer l'URL</button>
+      <input type="text" name="code" placeholder="Entrez le shortCode (phrase à encoder)" required>
+      <button type="submit">Envoyer le mot-clé</button>
     </form>
+
+    <!-- Bouton retour accueil -->
+    <a href="/" class="button">🏠 Retour à l'accueil</a>
   </div>
 </body>
 </html>
