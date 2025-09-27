@@ -14,7 +14,6 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
   <div class="sidebar">
     <h2>📌 Mes URLs</h2>
     @each(url in urls)
@@ -23,13 +22,11 @@
         <p><a class="short-url" href="/{{ url.shortCode }}" target="_blank">{{ url.shortCode }}</a></p>
         <img src="{{ url.qrCode }}" alt="QR" style="max-width:100px; margin-bottom:5px;">
         
-        <!-- Supprimer -->
         <form action="/urls/{{ url.id }}/delete" method="POST" style="margin-bottom:5px;">
           {{ csrfField() }}
           <button type="submit" style="background:red; color:white; border:none; padding:5px 10px;">Supprimer</button>
         </form>
 
-        <!-- Modifier -->
         <form action="/urls/{{ url.id }}/update" method="POST">
           {{ csrfField() }}
           <input type="text" name="originalUrl" value="{{ url.originalUrl }}" placeholder="Nouvelle URL">
@@ -40,7 +37,6 @@
     @endeach
   </div>
 
-  <!-- Content principal -->
   <div class="content">
     <h1>🔍 Rechercher / Redirection</h1>
     <form action="/goto" method="POST">
@@ -49,7 +45,6 @@
       <button type="submit">Envoyer le mot-clé</button>
     </form>
 
-    <!-- Bouton retour accueil -->
     <a href="/" class="button">🏠 Retour à l'accueil</a>
   </div>
 </body>
