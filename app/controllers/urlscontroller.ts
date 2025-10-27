@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { nanoid } from 'nanoid'
 import QRCode from 'qrcode'
-import Url from '../../models/url.js'
+import Url from '../models/url.js'
 
 export default class UrlsController {
   public async index({ view }: HttpContext) {

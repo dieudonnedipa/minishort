@@ -1,5 +1,5 @@
 import router from '@adonisjs/core/services/router'
-import UrlsController from '#controllers/http/urlscontroller'
+import UrlsController from '#controllers/urlscontroller'
 
 router.get('/', [UrlsController, 'index'])
 router.post('/shorten', [UrlsController, 'store'])
